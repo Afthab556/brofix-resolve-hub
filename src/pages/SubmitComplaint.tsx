@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Upload, X } from "lucide-react";
 import { z } from "zod";
 
 const complaintSchema = z.object({
@@ -26,6 +26,7 @@ const SubmitComplaint = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -52,6 +53,37 @@ const SubmitComplaint = () => {
     checkAuth();
     fetchCategories();
   }, [navigate]);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    
+    // Validate file size (max 10MB per file)
+    const invalidFiles = files.filter(file => file.size > 10 * 1024 * 1024);
+    if (invalidFiles.length > 0) {
+      toast({
+        title: "File too large",
+        description: "Each file must be smaller than 10MB",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Max 5 files
+    if (uploadedFiles.length + files.length > 5) {
+      toast({
+        title: "Too many files",
+        description: "You can upload a maximum of 5 files",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setUploadedFiles([...uploadedFiles, ...files]);
+  };
+
+  const removeFile = (index: number) => {
+    setUploadedFiles(uploadedFiles.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,6 +119,33 @@ const SubmitComplaint = () => {
       return;
     }
 
+    // Upload files first
+    const uploadedUrls: string[] = [];
+    for (const file of uploadedFiles) {
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${user.id}/${Date.now()}-${Math.random()}.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage
+        .from("complaint-documents")
+        .upload(fileName, file);
+
+      if (uploadError) {
+        toast({
+          title: "Upload failed",
+          description: `Failed to upload ${file.name}`,
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from("complaint-documents")
+        .getPublicUrl(fileName);
+      
+      uploadedUrls.push(publicUrl);
+    }
+
     const { error } = await supabase.from("complaints").insert([{
       user_id: user.id,
       title,
@@ -94,6 +153,7 @@ const SubmitComplaint = () => {
       category_id: categoryId,
       priority: priority as "low" | "medium" | "high" | "urgent",
       status: "new",
+      attachments: uploadedUrls.length > 0 ? uploadedUrls : null,
     }]);
 
     setLoading(false);
@@ -186,6 +246,58 @@ const SubmitComplaint = () => {
                   rows={6}
                   required
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="documents">Supporting Documents</Label>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Upload up to 5 files (max 10MB each)
+                </p>
+                <div className="flex flex-col gap-3">
+                  <input
+                    type="file"
+                    id="documents"
+                    multiple
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
+                    className="hidden"
+                    onChange={handleFileUpload}
+                  />
+                  <Label htmlFor="documents">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full"
+                      asChild
+                    >
+                      <span className="cursor-pointer">
+                        <Upload className="mr-2 h-4 w-4" />
+                        Upload Documents
+                      </span>
+                    </Button>
+                  </Label>
+                  {uploadedFiles.length > 0 && (
+                    <div className="space-y-2">
+                      {uploadedFiles.map((file, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between p-2 bg-muted rounded-md"
+                        >
+                          <span className="text-sm truncate flex-1">
+                            {file.name}
+                          </span>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removeFile(index)}
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="flex gap-3">
