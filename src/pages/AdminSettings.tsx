@@ -6,11 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const AdminSettings = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { theme, setTheme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [supportEmail, setSupportEmail] = useState("");
@@ -105,43 +108,95 @@ const AdminSettings = () => {
               Manage your system configuration and preferences
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="companyName">Company Name</Label>
-              <Input
-                id="companyName"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                placeholder="BroFix"
-              />
-            </div>
+          <CardContent>
+            <Tabs defaultValue="general" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="general">General</TabsTrigger>
+                <TabsTrigger value="appearance">Appearance</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="general" className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="companyName">Company Name</Label>
+                  <Input
+                    id="companyName"
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    placeholder="BroFix"
+                  />
+                </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="supportEmail">Support Email</Label>
-              <Input
-                id="supportEmail"
-                type="email"
-                value={supportEmail}
-                onChange={(e) => setSupportEmail(e.target.value)}
-                placeholder="support@brofix.com"
-              />
-            </div>
+                <div className="space-y-2">
+                  <Label htmlFor="supportEmail">Support Email</Label>
+                  <Input
+                    id="supportEmail"
+                    type="email"
+                    value={supportEmail}
+                    onChange={(e) => setSupportEmail(e.target.value)}
+                    placeholder="support@brofix.com"
+                  />
+                </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="supportPhone">Support Phone</Label>
-              <Input
-                id="supportPhone"
-                type="tel"
-                value={supportPhone}
-                onChange={(e) => setSupportPhone(e.target.value)}
-                placeholder="+1234567890"
-              />
-            </div>
+                <div className="space-y-2">
+                  <Label htmlFor="supportPhone">Support Phone</Label>
+                  <Input
+                    id="supportPhone"
+                    type="tel"
+                    value={supportPhone}
+                    onChange={(e) => setSupportPhone(e.target.value)}
+                    placeholder="+1234567890"
+                  />
+                </div>
 
-            <Button onClick={handleSave} disabled={loading} className="w-full">
-              <Save className="mr-2 h-4 w-4" />
-              {loading ? "Saving..." : "Save Settings"}
-            </Button>
+                <Button onClick={handleSave} disabled={loading} className="w-full">
+                  <Save className="mr-2 h-4 w-4" />
+                  {loading ? "Saving..." : "Save Settings"}
+                </Button>
+              </TabsContent>
+
+              <TabsContent value="appearance" className="space-y-6">
+                <div className="space-y-4">
+                  <div>
+                    <Label>Theme</Label>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Select the theme for the application
+                    </p>
+                  </div>
+                  
+                  <div className="grid grid-cols-3 gap-4">
+                    <Button
+                      variant={theme === "light" ? "default" : "outline"}
+                      onClick={() => setTheme("light")}
+                      className="flex flex-col items-center gap-2 h-auto py-4"
+                    >
+                      <Sun className="h-6 w-6" />
+                      <span>Light</span>
+                    </Button>
+                    
+                    <Button
+                      variant={theme === "dark" ? "default" : "outline"}
+                      onClick={() => setTheme("dark")}
+                      className="flex flex-col items-center gap-2 h-auto py-4"
+                    >
+                      <Moon className="h-6 w-6" />
+                      <span>Dark</span>
+                    </Button>
+                    
+                    <Button
+                      variant={theme === "system" ? "default" : "outline"}
+                      onClick={() => setTheme("system")}
+                      className="flex flex-col items-center gap-2 h-auto py-4"
+                    >
+                      <div className="h-6 w-6 flex">
+                        <Sun className="h-4 w-4" />
+                        <Moon className="h-4 w-4" />
+                      </div>
+                      <span>System</span>
+                    </Button>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
           </CardContent>
         </Card>
       </main>
