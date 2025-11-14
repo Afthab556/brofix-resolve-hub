@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Send, Clock, User } from "lucide-react";
+import { ArrowLeft, Send, Clock, User, Download, FileText } from "lucide-react";
 
 interface Complaint {
   id: string;
@@ -19,6 +19,7 @@ interface Complaint {
   created_at: string;
   resolution_notes: string | null;
   user_id: string;
+  attachments: string[] | null;
   complaint_categories: {
     name: string;
   } | null;
@@ -209,9 +210,43 @@ const AdminComplaintDetail = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div>
-                  <h3 className="font-semibold mb-2">Description</h3>
-                  <p className="text-muted-foreground">{complaint.description}</p>
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold mb-2">Description</h3>
+                    <p className="text-muted-foreground">{complaint.description}</p>
+                  </div>
+                  
+                  {complaint.attachments && complaint.attachments.length > 0 && (
+                    <div>
+                      <h3 className="font-semibold mb-2">Attached Documents</h3>
+                      <div className="space-y-2">
+                        {complaint.attachments.map((url, index) => {
+                          const fileName = url.split("/").pop() || `document-${index + 1}`;
+                          return (
+                            <div
+                              key={index}
+                              className="flex items-center justify-between p-3 bg-muted rounded-lg"
+                            >
+                              <div className="flex items-center gap-2">
+                                <FileText className="h-4 w-4 text-muted-foreground" />
+                                <span className="text-sm truncate max-w-xs">
+                                  Document {index + 1}
+                                </span>
+                              </div>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => window.open(url, "_blank")}
+                              >
+                                <Download className="mr-2 h-4 w-4" />
+                                Download
+                              </Button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

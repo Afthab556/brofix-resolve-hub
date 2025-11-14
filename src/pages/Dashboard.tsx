@@ -108,11 +108,11 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card shadow-card">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div>
+          <div className="flex items-center gap-4">
             <h1 className="text-2xl font-bold text-primary">BroFix</h1>
-            <p className="text-sm text-muted-foreground">
-              Welcome back, {user?.user_metadata?.name || user?.email}
-            </p>
+            <Button variant="ghost" onClick={() => navigate("/settings")}>
+              Settings
+            </Button>
           </div>
           <Button variant="outline" onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
