@@ -173,6 +173,40 @@ const AdminComplaintDetail = () => {
     }
   };
 
+  const handleDownloadDocument = async (url: string) => {
+    try {
+      // Extract the path from the full URL
+      const urlParts = url.split('/storage/v1/object/public/complaint-documents/');
+      if (urlParts.length < 2) {
+        throw new Error('Invalid file URL');
+      }
+      const filePath = urlParts[1];
+
+      // Create a signed URL for download (valid for 60 seconds)
+      const { data: signedUrlData, error: signedUrlError } = await supabase
+        .storage
+        .from('complaint-documents')
+        .createSignedUrl(filePath, 60);
+
+      if (signedUrlError) throw signedUrlError;
+
+      // Open the signed URL in a new tab
+      window.open(signedUrlData.signedUrl, '_blank');
+      
+      toast({
+        title: "Download started",
+        description: "Your document is being downloaded",
+      });
+    } catch (error) {
+      console.error('Download error:', error);
+      toast({
+        title: "Download failed",
+        description: "Failed to download the document. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   if (loading || !complaint) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -236,7 +270,7 @@ const AdminComplaintDetail = () => {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                onClick={() => window.open(url, "_blank")}
+                                onClick={() => handleDownloadDocument(url)}
                               >
                                 <Download className="mr-2 h-4 w-4" />
                                 Download
