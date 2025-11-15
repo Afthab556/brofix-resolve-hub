@@ -1,0 +1,82 @@
+{
+  "common": {
+    "loading": "جاري التحميل...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "submit": "إرسال",
+    "back": "رجوع",
+    "search": "بحث",
+    "filter": "تصفية",
+    "download": "تحميل",
+    "upload": "رفع",
+    "send": "إرسال"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "profile": "معلومات الملف الشخصي",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "avatar": "صورة الملف الشخصي",
+    "changeAvatar": "تغيير الصورة الرمزية",
+    "theme": "المظهر",
+    "lightMode": "الوضع الفاتح",
+    "darkMode": "الوضع الداكن",
+    "language": "اللغة",
+    "selectLanguage": "اختر اللغة",
+    "saveChanges": "حفظ التغييرات",
+    "profileUpdated": "تم تحديث الملف الشخصي بنجاح"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "myComplaints": "شكاواي",
+    "newComplaint": "شكوى جديدة",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "category": "الفئة",
+    "createdAt": "تاريخ الإنشاء",
+    "viewDetails": "عرض التفاصيل",
+    "noComplaints": "لا توجد شكاوى"
+  },
+  "complaint": {
+    "title": "عنوان الشكوى",
+    "description": "الوصف",
+    "attachments": "المرفقات",
+    "messages": "الرسائل",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "category": "الفئة",
+    "submitComplaint": "تقديم الشكوى",
+    "updateStatus": "تحديث الحالة",
+    "resolutionNotes": "ملاحظات الحل",
+    "typeMessage": "اكتب رسالتك...",
+    "attachedDocuments": "المستندات المرفقة",
+    "document": "مستند"
+  },
+  "admin": {
+    "dashboard": "لوحة تحكم المشرف",
+    "complaints": "الشكاوى",
+    "settings": "الإعدادات",
+    "allComplaints": "جميع الشكاوى",
+    "pendingComplaints": "الشكاوى المعلقة",
+    "resolvedComplaints": "الشكاوى المحلولة",
+    "categories": "الفئات",
+    "users": "المستخدمون"
+  },
+  "status": {
+    "new": "جديد",
+    "in_progress": "قيد التنفيذ",
+    "resolved": "محلول",
+    "closed": "مغلق"
+  },
+  "priority": {
+    "low": "منخفض",
+    "medium": "متوسط",
+    "high": "عالي",
+    "urgent": "عاجل"
+  }
+}

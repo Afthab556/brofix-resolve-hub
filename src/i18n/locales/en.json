@@ -1,0 +1,82 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "submit": "Submit",
+    "back": "Back",
+    "search": "Search",
+    "filter": "Filter",
+    "download": "Download",
+    "upload": "Upload",
+    "send": "Send"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile Information",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "avatar": "Profile Picture",
+    "changeAvatar": "Change Avatar",
+    "theme": "Theme",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "saveChanges": "Save Changes",
+    "profileUpdated": "Profile updated successfully"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "myComplaints": "My Complaints",
+    "newComplaint": "New Complaint",
+    "settings": "Settings",
+    "logout": "Logout",
+    "status": "Status",
+    "priority": "Priority",
+    "category": "Category",
+    "createdAt": "Created",
+    "viewDetails": "View Details",
+    "noComplaints": "No complaints found"
+  },
+  "complaint": {
+    "title": "Complaint Title",
+    "description": "Description",
+    "attachments": "Attachments",
+    "messages": "Messages",
+    "status": "Status",
+    "priority": "Priority",
+    "category": "Category",
+    "submitComplaint": "Submit Complaint",
+    "updateStatus": "Update Status",
+    "resolutionNotes": "Resolution Notes",
+    "typeMessage": "Type your message...",
+    "attachedDocuments": "Attached Documents",
+    "document": "Document"
+  },
+  "admin": {
+    "dashboard": "Admin Dashboard",
+    "complaints": "Complaints",
+    "settings": "Settings",
+    "allComplaints": "All Complaints",
+    "pendingComplaints": "Pending Complaints",
+    "resolvedComplaints": "Resolved Complaints",
+    "categories": "Categories",
+    "users": "Users"
+  },
+  "status": {
+    "new": "New",
+    "in_progress": "In Progress",
+    "resolved": "Resolved",
+    "closed": "Closed"
+  },
+  "priority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "urgent": "Urgent"
+  }
+}

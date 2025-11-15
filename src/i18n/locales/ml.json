@@ -1,0 +1,82 @@
+{
+  "common": {
+    "loading": "ലോഡ് ചെയ്യുന്നു...",
+    "save": "സംരക്ഷിക്കുക",
+    "cancel": "റദ്ദാക്കുക",
+    "delete": "ഇല്ലാതാക്കുക",
+    "edit": "എഡിറ്റ് ചെയ്യുക",
+    "submit": "സമർപ്പിക്കുക",
+    "back": "തിരികെ",
+    "search": "തിരയുക",
+    "filter": "ഫിൽട്ടർ",
+    "download": "ഡൗൺലോഡ്",
+    "upload": "അപ്‌ലോഡ്",
+    "send": "അയയ്ക്കുക"
+  },
+  "settings": {
+    "title": "സെറ്റിംഗുകൾ",
+    "profile": "പ്രൊഫൈൽ വിവരങ്ങൾ",
+    "name": "പേര്",
+    "email": "ഇമെയിൽ",
+    "phone": "ഫോൺ നമ്പർ",
+    "avatar": "പ്രൊഫൈൽ ചിത്രം",
+    "changeAvatar": "അവതാർ മാറ്റുക",
+    "theme": "തീം",
+    "lightMode": "ലൈറ്റ് മോഡ്",
+    "darkMode": "ഡാർക്ക് മോഡ്",
+    "language": "ഭാഷ",
+    "selectLanguage": "ഭാഷ തിരഞ്ഞെടുക്കുക",
+    "saveChanges": "മാറ്റങ്ങൾ സംരക്ഷിക്കുക",
+    "profileUpdated": "പ്രൊഫൈൽ വിജയകരമായി അപ്ഡേറ്റ് ചെയ്തു"
+  },
+  "dashboard": {
+    "title": "ഡാഷ്‌ബോർഡ്",
+    "myComplaints": "എന്റെ പരാതികൾ",
+    "newComplaint": "പുതിയ പരാതി",
+    "settings": "സെറ്റിംഗുകൾ",
+    "logout": "ലോഗ് ഔട്ട്",
+    "status": "നില",
+    "priority": "മുൻഗണന",
+    "category": "വിഭാഗം",
+    "createdAt": "സൃഷ്ടിച്ചത്",
+    "viewDetails": "വിശദാംശങ്ങൾ കാണുക",
+    "noComplaints": "പരാതികളൊന്നും കണ്ടെത്തിയില്ല"
+  },
+  "complaint": {
+    "title": "പരാതി ശീർഷകം",
+    "description": "വിവരണം",
+    "attachments": "അറ്റാച്ച്‌മെന്റുകൾ",
+    "messages": "സന്ദേശങ്ങൾ",
+    "status": "നില",
+    "priority": "മുൻഗണന",
+    "category": "വിഭാഗം",
+    "submitComplaint": "പരാതി സമർപ്പിക്കുക",
+    "updateStatus": "സ്റ്റാറ്റസ് അപ്ഡേറ്റ് ചെയ്യുക",
+    "resolutionNotes": "പരിഹാര കുറിപ്പുകൾ",
+    "typeMessage": "നിങ്ങളുടെ സന്ദേശം ടൈപ്പ് ചെയ്യുക...",
+    "attachedDocuments": "അറ്റാച്ച് ചെയ്ത രേഖകൾ",
+    "document": "രേഖ"
+  },
+  "admin": {
+    "dashboard": "അഡ്മിൻ ഡാഷ്‌ബോർഡ്",
+    "complaints": "പരാതികൾ",
+    "settings": "സെറ്റിംഗുകൾ",
+    "allComplaints": "എല്ലാ പരാതികളും",
+    "pendingComplaints": "തീർപ്പാക്കാത്ത പരാതികൾ",
+    "resolvedComplaints": "പരിഹരിച്ച പരാതികൾ",
+    "categories": "വിഭാഗങ്ങൾ",
+    "users": "ഉപയോക്താക്കൾ"
+  },
+  "status": {
+    "new": "പുതിയത്",
+    "in_progress": "പുരോഗമിക്കുന്നു",
+    "resolved": "പരിഹരിച്ചു",
+    "closed": "അടച്ചു"
+  },
+  "priority": {
+    "low": "കുറവ്",
+    "medium": "ഇടത്തരം",
+    "high": "ഉയർന്നത്",
+    "urgent": "അടിയന്തിരം"
+  }
+}
