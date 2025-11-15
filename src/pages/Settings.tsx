@@ -7,14 +7,18 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save, Moon, Sun, Upload } from "lucide-react";
+import { ArrowLeft, Save, Moon, Sun, Upload, Languages } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useTranslation } from "react-i18next";
+import { languages } from "@/i18n/config";
 
 const Settings = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { theme, setTheme } = useTheme();
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [name, setName] = useState("");
@@ -121,12 +125,20 @@ const Settings = () => {
     } else {
       setAvatarUrl(publicUrl);
       toast({
-        title: "Avatar updated",
-        description: "Your profile picture has been updated",
+        title: t("settings.profileUpdated"),
+        description: t("settings.profileUpdated"),
       });
     }
 
     setUploading(false);
+  };
+
+  const handleLanguageChange = (languageCode: string) => {
+    i18n.changeLanguage(languageCode);
+    toast({
+      title: t("settings.profileUpdated"),
+      description: `Language changed to ${languages.find(l => l.code === languageCode)?.name}`,
+    });
   };
 
   const handleSave = async () => {
@@ -144,14 +156,14 @@ const Settings = () => {
 
     if (error) {
       toast({
-        title: "Update failed",
+        title: t("settings.profileUpdated"),
         description: error.message,
         variant: "destructive",
       });
     } else {
       toast({
-        title: "Profile updated",
-        description: "Your profile has been updated successfully",
+        title: t("settings.profileUpdated"),
+        description: t("settings.profileUpdated"),
       });
     }
   };
@@ -162,7 +174,7 @@ const Settings = () => {
         <div className="container mx-auto px-4 py-4">
           <Button variant="ghost" onClick={() => navigate("/dashboard")}>
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Dashboard
+            {t("common.back")}
           </Button>
         </div>
       </header>
@@ -170,16 +182,16 @@ const Settings = () => {
       <main className="container mx-auto px-4 py-8 max-w-2xl">
         <Card className="shadow-elevated">
           <CardHeader>
-            <CardTitle className="text-2xl">Settings</CardTitle>
+            <CardTitle className="text-2xl">{t("settings.title")}</CardTitle>
             <CardDescription>
-              Manage your profile and preferences
+              {t("settings.profile")}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="profile" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="profile">Profile</TabsTrigger>
-                <TabsTrigger value="appearance">Appearance</TabsTrigger>
+                <TabsTrigger value="profile">{t("settings.profile")}</TabsTrigger>
+                <TabsTrigger value="appearance">{t("settings.theme")}</TabsTrigger>
               </TabsList>
 
               <TabsContent value="profile" className="space-y-6">
@@ -215,17 +227,17 @@ const Settings = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">{t("settings.name")}</Label>
                   <Input
                     id="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Your name"
+                    placeholder={t("settings.name")}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t("settings.email")}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -239,7 +251,7 @@ const Settings = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone">{t("settings.phone")}</Label>
                   <Input
                     id="phone"
                     type="tel"
@@ -251,14 +263,14 @@ const Settings = () => {
 
                 <Button onClick={handleSave} disabled={loading} className="w-full">
                   <Save className="mr-2 h-4 w-4" />
-                  {loading ? "Saving..." : "Save Changes"}
+                  {loading ? t("common.loading") : t("settings.saveChanges")}
                 </Button>
               </TabsContent>
 
               <TabsContent value="appearance" className="space-y-6">
                 <div className="space-y-4">
                   <div>
-                    <Label>Theme</Label>
+                    <Label>{t("settings.theme")}</Label>
                     <p className="text-sm text-muted-foreground mb-4">
                       Select the theme for the application
                     </p>
@@ -271,7 +283,7 @@ const Settings = () => {
                       className="flex flex-col items-center gap-2 h-auto py-4"
                     >
                       <Sun className="h-6 w-6" />
-                      <span>Light</span>
+                      <span>{t("settings.lightMode")}</span>
                     </Button>
 
                     <Button
@@ -280,7 +292,7 @@ const Settings = () => {
                       className="flex flex-col items-center gap-2 h-auto py-4"
                     >
                       <Moon className="h-6 w-6" />
-                      <span>Dark</span>
+                      <span>{t("settings.darkMode")}</span>
                     </Button>
 
                     <Button
@@ -295,6 +307,31 @@ const Settings = () => {
                       <span>System</span>
                     </Button>
                   </div>
+                </div>
+
+                <div className="space-y-4 pt-6 border-t">
+                  <div>
+                    <Label className="flex items-center gap-2">
+                      <Languages className="h-4 w-4" />
+                      {t("settings.language")}
+                    </Label>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {t("settings.selectLanguage")}
+                    </p>
+                  </div>
+
+                  <Select value={i18n.language} onValueChange={handleLanguageChange}>
+                    <SelectTrigger>
+                      <SelectValue placeholder={t("settings.selectLanguage")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {languages.map((lang) => (
+                        <SelectItem key={lang.code} value={lang.code}>
+                          {lang.nativeName} ({lang.name})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </TabsContent>
             </Tabs>

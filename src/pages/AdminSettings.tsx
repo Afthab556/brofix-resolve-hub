@@ -5,15 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save, Moon, Sun } from "lucide-react";
+import { ArrowLeft, Save, Moon, Sun, Languages } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTranslation } from "react-i18next";
+import { languages } from "@/i18n/config";
 
 const AdminSettings = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { theme, setTheme } = useTheme();
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [supportEmail, setSupportEmail] = useState("");
@@ -84,8 +88,16 @@ const AdminSettings = () => {
     setLoading(false);
     
     toast({
-      title: "Settings saved",
-      description: "Your settings have been updated successfully",
+      title: t("settings.profileUpdated"),
+      description: t("settings.profileUpdated"),
+    });
+  };
+
+  const handleLanguageChange = (languageCode: string) => {
+    i18n.changeLanguage(languageCode);
+    toast({
+      title: t("settings.profileUpdated"),
+      description: `Language changed to ${languages.find(l => l.code === languageCode)?.name}`,
     });
   };
 
@@ -157,7 +169,7 @@ const AdminSettings = () => {
               <TabsContent value="appearance" className="space-y-6">
                 <div className="space-y-4">
                   <div>
-                    <Label>Theme</Label>
+                    <Label>{t("settings.theme")}</Label>
                     <p className="text-sm text-muted-foreground mb-4">
                       Select the theme for the application
                     </p>
@@ -170,7 +182,7 @@ const AdminSettings = () => {
                       className="flex flex-col items-center gap-2 h-auto py-4"
                     >
                       <Sun className="h-6 w-6" />
-                      <span>Light</span>
+                      <span>{t("settings.lightMode")}</span>
                     </Button>
                     
                     <Button
@@ -179,7 +191,7 @@ const AdminSettings = () => {
                       className="flex flex-col items-center gap-2 h-auto py-4"
                     >
                       <Moon className="h-6 w-6" />
-                      <span>Dark</span>
+                      <span>{t("settings.darkMode")}</span>
                     </Button>
                     
                     <Button
@@ -194,6 +206,31 @@ const AdminSettings = () => {
                       <span>System</span>
                     </Button>
                   </div>
+                </div>
+
+                <div className="space-y-4 pt-6 border-t">
+                  <div>
+                    <Label className="flex items-center gap-2">
+                      <Languages className="h-4 w-4" />
+                      {t("settings.language")}
+                    </Label>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {t("settings.selectLanguage")}
+                    </p>
+                  </div>
+
+                  <Select value={i18n.language} onValueChange={handleLanguageChange}>
+                    <SelectTrigger>
+                      <SelectValue placeholder={t("settings.selectLanguage")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {languages.map((lang) => (
+                        <SelectItem key={lang.code} value={lang.code}>
+                          {lang.nativeName} ({lang.name})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </TabsContent>
             </Tabs>

@@ -1,0 +1,82 @@
+{
+  "common": {
+    "loading": "ஏற்றுகிறது...",
+    "save": "சேமி",
+    "cancel": "ரத்து செய்",
+    "delete": "நீக்கு",
+    "edit": "திருத்து",
+    "submit": "சமர்ப்பி",
+    "back": "பின்னால்",
+    "search": "தேடு",
+    "filter": "வடிகட்டி",
+    "download": "பதிவிறக்கு",
+    "upload": "பதிவேற்று",
+    "send": "அனுப்பு"
+  },
+  "settings": {
+    "title": "அமைப்புகள்",
+    "profile": "சுயவிவரத் தகவல்",
+    "name": "பெயர்",
+    "email": "மின்னஞ்சல்",
+    "phone": "தொலைபேசி எண்",
+    "avatar": "சுயவிவரப் படம்",
+    "changeAvatar": "அவதாரத்தை மாற்று",
+    "theme": "தீம்",
+    "lightMode": "லைட் மோட்",
+    "darkMode": "டார்க் மோட்",
+    "language": "மொழி",
+    "selectLanguage": "மொழியைத் தேர்ந்தெடு",
+    "saveChanges": "மாற்றங்களைச் சேமி",
+    "profileUpdated": "சுயவிவரம் வெற்றிகரமாக புதுப்பிக்கப்பட்டது"
+  },
+  "dashboard": {
+    "title": "டாஷ்போர்டு",
+    "myComplaints": "எனது புகார்கள்",
+    "newComplaint": "புதிய புகார்",
+    "settings": "அமைப்புகள்",
+    "logout": "வெளியேறு",
+    "status": "நிலை",
+    "priority": "முன்னுரிமை",
+    "category": "வகை",
+    "createdAt": "உருவாக்கப்பட்டது",
+    "viewDetails": "விவரங்களைக் காண்க",
+    "noComplaints": "புகார்கள் எதுவும் இல்லை"
+  },
+  "complaint": {
+    "title": "புகார் தலைப்பு",
+    "description": "விளக்கம்",
+    "attachments": "இணைப்புகள்",
+    "messages": "செய்திகள்",
+    "status": "நிலை",
+    "priority": "முன்னுரிமை",
+    "category": "வகை",
+    "submitComplaint": "புகாரை சமர்ப்பி",
+    "updateStatus": "நிலையை புதுப்பி",
+    "resolutionNotes": "தீர்வு குறிப்புகள்",
+    "typeMessage": "உங்கள் செய்தியை தட்டச்சு செய்க...",
+    "attachedDocuments": "இணைக்கப்பட்ட ஆவணங்கள்",
+    "document": "ஆவணம்"
+  },
+  "admin": {
+    "dashboard": "நிர்வாக டாஷ்போர்டு",
+    "complaints": "புகார்கள்",
+    "settings": "அமைப்புகள்",
+    "allComplaints": "அனைத்து புகார்கள்",
+    "pendingComplaints": "நிலுவையில் உள்ள புகார்கள்",
+    "resolvedComplaints": "தீர்க்கப்பட்ட புகார்கள்",
+    "categories": "வகைகள்",
+    "users": "பயனர்கள்"
+  },
+  "status": {
+    "new": "புதிய",
+    "in_progress": "முன்னேற்றத்தில்",
+    "resolved": "தீர்க்கப்பட்டது",
+    "closed": "மூடப்பட்டது"
+  },
+  "priority": {
+    "low": "குறைவு",
+    "medium": "நடுத்தரம்",
+    "high": "உயர்",
+    "urgent": "அவசர"
+  }
+}

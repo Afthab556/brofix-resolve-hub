@@ -1,0 +1,82 @@
+{
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "submit": "जमा करें",
+    "back": "वापस",
+    "search": "खोजें",
+    "filter": "फ़िल्टर",
+    "download": "डाउनलोड",
+    "upload": "अपलोड",
+    "send": "भेजें"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "profile": "प्रोफ़ाइल जानकारी",
+    "name": "नाम",
+    "email": "ईमेल",
+    "phone": "फ़ोन नंबर",
+    "avatar": "प्रोफ़ाइल चित्र",
+    "changeAvatar": "अवतार बदलें",
+    "theme": "थीम",
+    "lightMode": "लाइट मोड",
+    "darkMode": "डार्क मोड",
+    "language": "भाषा",
+    "selectLanguage": "भाषा चुनें",
+    "saveChanges": "परिवर्तन सहेजें",
+    "profileUpdated": "प्रोफ़ाइल सफलतापूर्वक अपडेट किया गया"
+  },
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "myComplaints": "मेरी शिकायतें",
+    "newComplaint": "नई शिकायत",
+    "settings": "सेटिंग्स",
+    "logout": "लॉग आउट",
+    "status": "स्थिति",
+    "priority": "प्राथमिकता",
+    "category": "श्रेणी",
+    "createdAt": "बनाया गया",
+    "viewDetails": "विवरण देखें",
+    "noComplaints": "कोई शिकायत नहीं मिली"
+  },
+  "complaint": {
+    "title": "शिकायत शीर्षक",
+    "description": "विवरण",
+    "attachments": "संलग्नक",
+    "messages": "संदेश",
+    "status": "स्थिति",
+    "priority": "प्राथमिकता",
+    "category": "श्रेणी",
+    "submitComplaint": "शिकायत दर्ज करें",
+    "updateStatus": "स्थिति अपडेट करें",
+    "resolutionNotes": "समाधान नोट्स",
+    "typeMessage": "अपना संदेश लिखें...",
+    "attachedDocuments": "संलग्न दस्तावेज़",
+    "document": "दस्तावेज़"
+  },
+  "admin": {
+    "dashboard": "व्यवस्थापक डैशबोर्ड",
+    "complaints": "शिकायतें",
+    "settings": "सेटिंग्स",
+    "allComplaints": "सभी शिकायतें",
+    "pendingComplaints": "लंबित शिकायतें",
+    "resolvedComplaints": "हल की गई शिकायतें",
+    "categories": "श्रेणियां",
+    "users": "उपयोगकर्ता"
+  },
+  "status": {
+    "new": "नया",
+    "in_progress": "प्रगति में",
+    "resolved": "हल किया गया",
+    "closed": "बंद"
+  },
+  "priority": {
+    "low": "कम",
+    "medium": "मध्यम",
+    "high": "उच्च",
+    "urgent": "तत्काल"
+  }
+}
