@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, LogOut, MessageSquare, Clock } from "lucide-react";
+import { Plus, LogOut, MessageSquare, Clock, Settings } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
+import { useTranslation } from "react-i18next";
 
 interface Complaint {
   id: string;
@@ -23,6 +24,7 @@ interface Complaint {
 const Dashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [user, setUser] = useState<User | null>(null);
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [loading, setLoading] = useState(true);
@@ -71,8 +73,8 @@ const Dashboard = () => {
 
     if (error) {
       toast({
-        title: "Error",
-        description: "Failed to fetch complaints",
+        title: t('dashboard.error'),
+        description: t('dashboard.fetchError'),
         variant: "destructive",
       });
     } else {
@@ -101,7 +103,11 @@ const Dashboard = () => {
   };
 
   const formatStatus = (status: string) => {
-    return status.replace("_", " ").replace(/\b\w/g, (l) => l.toUpperCase());
+    return t(`status.${status}`);
+  };
+
+  const formatPriority = (priority: string) => {
+    return t(`priority.${priority}`);
   };
 
   return (
@@ -109,14 +115,14 @@ const Dashboard = () => {
       <header className="border-b bg-card shadow-card">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-primary">BroFix</h1>
-            <Button variant="ghost" onClick={() => navigate("/settings")}>
-              Settings
+            <Button variant="ghost" size="icon" onClick={() => navigate("/settings")}>
+              <Settings className="h-5 w-5" />
             </Button>
+            <h1 className="text-2xl font-bold text-primary">BroFix</h1>
           </div>
           <Button variant="outline" onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
-            Logout
+            {t('nav.logout')}
           </Button>
         </div>
       </header>
@@ -124,32 +130,32 @@ const Dashboard = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h2 className="text-3xl font-bold">My Complaints</h2>
+            <h2 className="text-3xl font-bold">{t('dashboard.myComplaints')}</h2>
             <p className="text-muted-foreground mt-1">
-              Track and manage all your submitted complaints
+              {t('dashboard.trackAndManage')}
             </p>
           </div>
           <Button onClick={() => navigate("/submit-complaint")}>
             <Plus className="mr-2 h-4 w-4" />
-            New Complaint
+            {t('dashboard.newComplaint')}
           </Button>
         </div>
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">Loading complaints...</p>
+            <p className="text-muted-foreground">{t('common.loading')}</p>
           </div>
         ) : complaints.length === 0 ? (
           <Card className="text-center py-12">
             <CardContent className="pt-6">
               <MessageSquare className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-              <h3 className="text-lg font-semibold mb-2">No complaints yet</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('dashboard.noComplaints')}</h3>
               <p className="text-muted-foreground mb-4">
-                Submit your first complaint to get started
+                {t('dashboard.submitFirst')}
               </p>
               <Button onClick={() => navigate("/submit-complaint")}>
                 <Plus className="mr-2 h-4 w-4" />
-                Submit Complaint
+                {t('complaint.submitComplaint')}
               </Button>
             </CardContent>
           </Card>
