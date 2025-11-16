@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Send, Clock, User, Download, FileText } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Complaint {
   id: string;
@@ -37,6 +38,7 @@ const AdminComplaintDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [complaint, setComplaint] = useState<Complaint | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState("");

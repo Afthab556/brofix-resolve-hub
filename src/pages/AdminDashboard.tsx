@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { LogOut, Settings, TrendingUp, Clock, CheckCircle, AlertCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Complaint {
   id: string;
@@ -27,6 +28,7 @@ interface Complaint {
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [stats, setStats] = useState({ new: 0, inProgress: 0, resolved: 0, total: 0 });
   const [loading, setLoading] = useState(true);
