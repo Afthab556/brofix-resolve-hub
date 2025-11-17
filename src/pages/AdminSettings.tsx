@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save, Moon, Sun, Languages } from "lucide-react";
+import { ArrowLeft, Save, Moon, Sun, Languages, Info } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslation } from "react-i18next";
@@ -107,7 +107,7 @@ const AdminSettings = () => {
         <div className="container mx-auto px-4 py-4">
           <Button variant="ghost" onClick={() => navigate("/admin/dashboard")}>
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Dashboard
+            {t("settings.backToDashboard")}
           </Button>
         </div>
       </header>
@@ -115,21 +115,22 @@ const AdminSettings = () => {
       <main className="container mx-auto px-4 py-8 max-w-2xl">
         <Card className="shadow-elevated">
           <CardHeader>
-            <CardTitle className="text-2xl">Admin Settings</CardTitle>
+            <CardTitle className="text-2xl">{t("admin.settings")}</CardTitle>
             <CardDescription>
-              Manage your system configuration and preferences
+              {t("settings.general")}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="general" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="general">General</TabsTrigger>
-                <TabsTrigger value="appearance">Appearance</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="general">{t("settings.general")}</TabsTrigger>
+                <TabsTrigger value="appearance">{t("settings.appearance")}</TabsTrigger>
+                <TabsTrigger value="about">{t("settings.about")}</TabsTrigger>
               </TabsList>
               
               <TabsContent value="general" className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="companyName">Company Name</Label>
+                  <Label htmlFor="companyName">{t("settings.companyName")}</Label>
                   <Input
                     id="companyName"
                     value={companyName}
@@ -139,7 +140,7 @@ const AdminSettings = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="supportEmail">Support Email</Label>
+                  <Label htmlFor="supportEmail">{t("settings.supportEmail")}</Label>
                   <Input
                     id="supportEmail"
                     type="email"
@@ -150,7 +151,7 @@ const AdminSettings = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="supportPhone">Support Phone</Label>
+                  <Label htmlFor="supportPhone">{t("settings.supportPhone")}</Label>
                   <Input
                     id="supportPhone"
                     type="tel"
@@ -162,7 +163,7 @@ const AdminSettings = () => {
 
                 <Button onClick={handleSave} disabled={loading} className="w-full">
                   <Save className="mr-2 h-4 w-4" />
-                  {loading ? "Saving..." : "Save Settings"}
+                  {loading ? t("settings.saving") : t("settings.saveSettings")}
                 </Button>
               </TabsContent>
 
@@ -171,7 +172,7 @@ const AdminSettings = () => {
                   <div>
                     <Label>{t("settings.theme")}</Label>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Select the theme for the application
+                      {t("settings.selectTheme")}
                     </p>
                   </div>
                   
@@ -203,7 +204,7 @@ const AdminSettings = () => {
                         <Sun className="h-4 w-4" />
                         <Moon className="h-4 w-4" />
                       </div>
-                      <span>System</span>
+                      <span>{t("settings.system")}</span>
                     </Button>
                   </div>
                 </div>
@@ -231,6 +232,20 @@ const AdminSettings = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="about" className="space-y-4">
+                <div className="space-y-4">
+                  <div>
+                    <Label className="text-lg font-semibold flex items-center gap-2">
+                      <Info className="h-5 w-5" />
+                      {t('settings.about')}
+                    </Label>
+                    <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+                      {t('settings.aboutDesc')}
+                    </p>
+                  </div>
                 </div>
               </TabsContent>
             </Tabs>

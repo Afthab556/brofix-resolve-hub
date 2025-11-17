@@ -6,7 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, Settings, TrendingUp, Clock, CheckCircle, AlertCircle } from "lucide-react";
+import { LogOut, Settings, TrendingUp, Clock, CheckCircle, AlertCircle, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 
 interface Complaint {
@@ -29,6 +30,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation();
+  const { theme, setTheme } = useTheme();
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [stats, setStats] = useState({ new: 0, inProgress: 0, resolved: 0, total: 0 });
   const [loading, setLoading] = useState(true);
@@ -162,17 +164,28 @@ const AdminDashboard = () => {
       <header className="border-b bg-card shadow-card">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-primary">BroFix Admin</h1>
-            <p className="text-sm text-muted-foreground">Complaint Management Dashboard</p>
+            <h1 className="text-2xl font-bold text-primary">BroFix - {t('admin.dashboard')}</h1>
+            <p className="text-sm text-muted-foreground">{t('admin.manageComplaints')}</p>
           </div>
           <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </Button>
             <Button variant="outline" onClick={() => navigate("/admin/settings")}>
               <Settings className="mr-2 h-4 w-4" />
-              Settings
+              {t('nav.settings')}
             </Button>
             <Button variant="outline" onClick={handleLogout}>
               <LogOut className="mr-2 h-4 w-4" />
-              Logout
+              {t('nav.logout')}
             </Button>
           </div>
         </div>
