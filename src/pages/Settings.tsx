@@ -189,9 +189,10 @@ const Settings = () => {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="profile" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="profile">{t("settings.profile")}</TabsTrigger>
-                <TabsTrigger value="appearance">{t("settings.theme")}</TabsTrigger>
+                <TabsTrigger value="appearance">{t("settings.appearance")}</TabsTrigger>
+                <TabsTrigger value="about">{t("settings.about")}</TabsTrigger>
               </TabsList>
 
               <TabsContent value="profile" className="space-y-6">
@@ -272,7 +273,7 @@ const Settings = () => {
                   <div>
                     <Label>{t("settings.theme")}</Label>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Select the theme for the application
+                      {t("settings.selectTheme")}
                     </p>
                   </div>
 
@@ -304,7 +305,7 @@ const Settings = () => {
                         <Sun className="h-4 w-4" />
                         <Moon className="h-4 w-4" />
                       </div>
-                      <span>System</span>
+                      <span>{t("settings.system")}</span>
                     </Button>
                   </div>
                 </div>
@@ -332,6 +333,17 @@ const Settings = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="about" className="space-y-4">
+                <div className="space-y-4">
+                  <div>
+                    <Label className="text-lg font-semibold">{t('settings.about')}</Label>
+                    <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+                      {t('settings.aboutDesc')}
+                    </p>
+                  </div>
                 </div>
               </TabsContent>
             </Tabs>

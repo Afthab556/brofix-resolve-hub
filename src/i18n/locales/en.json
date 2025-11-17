@@ -20,6 +20,20 @@
     "settings": "Settings",
     "logout": "Logout"
   },
+  "home": {
+    "title": "Smart Complaint Management",
+    "subtitle": "Submit, track, and resolve complaints with ease. Professional support at your fingertips.",
+    "getStarted": "Get Started",
+    "adminAccess": "Admin Access",
+    "login": "Login",
+    "admin": "Admin",
+    "easySubmission": "Easy Submission",
+    "easySubmissionDesc": "Submit complaints quickly with our simple form",
+    "realTimeUpdates": "Real-time Updates",
+    "realTimeUpdatesDesc": "Stay informed with instant notifications",
+    "quickResolution": "Quick Resolution",
+    "quickResolutionDesc": "Get your issues resolved efficiently"
+  },
   "settings": {
     "title": "Settings",
     "profile": "Profile Information",
@@ -34,7 +48,19 @@
     "language": "Language",
     "selectLanguage": "Select Language",
     "saveChanges": "Save Changes",
-    "profileUpdated": "Profile updated successfully"
+    "profileUpdated": "Profile updated successfully",
+    "about": "About",
+    "aboutDesc": "BroFix is a comprehensive complaint management system designed to streamline the process of submitting, tracking, and resolving customer complaints. Our platform provides a user-friendly interface that enables seamless communication between customers and administrators. With real-time notifications, document attachment capabilities, and multi-language support, we ensure that every complaint is handled efficiently and professionally. Our commitment is to provide exceptional service and quick resolution to all your concerns, making complaint management hassle-free and transparent.",
+    "general": "General",
+    "appearance": "Appearance",
+    "companyName": "Company Name",
+    "supportEmail": "Support Email",
+    "supportPhone": "Support Phone",
+    "selectTheme": "Select the theme for the application",
+    "system": "System",
+    "saving": "Saving...",
+    "saveSettings": "Save Settings",
+    "backToDashboard": "Back to Dashboard"
   },
   "dashboard": {
     "title": "Dashboard",

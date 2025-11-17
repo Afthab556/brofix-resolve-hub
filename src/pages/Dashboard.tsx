@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, LogOut, MessageSquare, Clock, Settings } from "lucide-react";
+import { Plus, LogOut, MessageSquare, Clock, Settings, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import type { User } from "@supabase/supabase-js";
 import { useTranslation } from "react-i18next";
 
@@ -25,6 +26,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation();
+  const { theme, setTheme } = useTheme();
   const [user, setUser] = useState<User | null>(null);
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [loading, setLoading] = useState(true);
@@ -117,6 +119,17 @@ const Dashboard = () => {
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" onClick={() => navigate("/settings")}>
               <Settings className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </Button>
             <h1 className="text-2xl font-bold text-primary">BroFix</h1>
           </div>
